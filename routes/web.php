@@ -1,30 +1,36 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MainController;
+use App\Http\Controllers\SiteController;
+
+// Route::get('/profile/{name?}', function($n = '') {
+//     return 'Profile ' . $n;
+// });
 
 // Route::get('url', 'action');
 
 // use , namespace
 
-Route::post('/', function () {
-    return 'Homepage';
-});
+// Route::post('/', function () {
+//     return 'Homepage';
+// });
 
-Route::put('/', function () {
-    return 'Homepage';
-});
+// Route::put('/', function () {
+//     return 'Homepage';
+// });
 
-Route::patch('/', function () {
-    return 'Homepage';
-});
+// Route::patch('/', function () {
+//     return 'Homepage';
+// });
 
-Route::delete('/', function () {
-    return 'Homepage';
-});
+// Route::delete('/', function () {
+//     return 'Homepage';
+// });
 
-Route::get('/', function () {
-    return 'Homepage - Get';
-});
+// Route::get('/', function () {
+//     return 'Homepage - Get';
+// });
 
 // Route::get('/about', function () {
 //     return 'About Page';
@@ -45,37 +51,99 @@ Route::get('/', function () {
 // Route::delete('uri', 'action');
 
 // home , about , contact , team , services
-Route::get('home', function() {
-    return 'home page';
-});
+// Route::get('home', function() {
+//     return 'home page';
+// });
 
-Route::get('about', function() {
-    return 'about page';
-});
+// Route::get('about', function() {
+//     return 'about page';
+// });
 
-Route::get('contact', function() {
-    return 'contact page';
-});
+// Route::get('contact', function() {
+//     return 'contact page';
+// });
 
-Route::post('contact', function() {
-    return 'contact page';
-});
+// Route::post('contact', function() {
+//     return 'contact page';
+// });
 
-Route::get('team', function() {
-    return 'team page';
-});
+// Route::get('team', function() {
+//     return 'team page';
+// });
 
-Route::get('services', function() {
-    return 'services page';
-});
+// Route::get('services', function() {
+//     return 'services page';
+// });
 
-Route::get('user/{name}/{age}', function($name, $age) {
-    return "Welcome $name, your age is $age";
-})->whereAlpha('name')->whereNumber('age');
+// Route::get('user/{name}/{age}', function($name, $age) {
+//     return "Welcome $name, your age is $age";
+// })->whereAlpha('name')->whereNumber('age');
 // ->where('name', '[a-zA-Z]+');
 // /sessions/itil-foundation/self-study
 // /sessions/itil-foundation
 
-Route::get('/sessions/{course}/{type?}', function($course, $type = 'live-online') {
-    return "Course Name : $course , Course Type = $type";
-});
+// Route::get('/sessions/{course}/{type?}', function($course, $type = 'live-online') {
+//     return "Course Name : $course , Course Type = $type";
+// });
+
+
+
+// Route::get('/', function() {
+//     // return 'Go to <a href="/contact-me">Contact</a> Page';
+//     // $url = url('/contact-me');
+//     $url = route('contactpage');
+//     // return $url;
+//     return 'Go to <a href="'.$url.'">Contact</a> Page';
+//     // return 'Go to <a href="">Contact</a> Page';
+// });
+
+// Route::get('contact-us', function() {
+//     return 'Contact Us';
+// })->name('contactpage');
+
+// Route::prefix('admin')->name('admin.')->group(function() {
+//     Route::get('/', function() {
+//         return 'Admin';
+//     })->name('index');
+
+//     Route::get('orders', function() {
+//         return 'Admin orders';
+//     })->name('orders');
+
+//     Route::get('products', function() {
+//         return 'Admin products';
+//     })->name('products');
+
+//     Route::get('posts', function() {
+//         return 'Admin posts';
+//     })->name('posts');
+
+//     Route::get('books', function() {
+//         return 'Admin books';
+//     })->name('books');
+
+// });
+
+// Route::match(['post', 'put', 'patch'], 'save-data', function() {
+//     return 'Data Saved';
+// });
+
+// Route::any('privacy-policy', function() {
+//     return 'dd';
+// });
+
+// Route::view('test', 'welcome');
+
+// Route::redirect('/test', '/privacy-policy');
+
+// use , namespace
+
+// Route::get('/', [MainController::class, 'index'])->name('main.index');
+// Route::get('/', 'MainController@index');
+
+// SiteController
+// home , about , team , contact
+Route::get('home', [SiteController::class, 'home'])->name('home');
+Route::get('about', [SiteController::class, 'about'])->name('about');
+Route::get('team', [SiteController::class, 'team'])->name('team');
+Route::get('contact', [SiteController::class, 'contact'])->name('contact');
