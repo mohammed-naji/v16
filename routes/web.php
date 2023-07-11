@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\SiteController;
@@ -143,7 +144,9 @@ use App\Http\Controllers\SiteController;
 
 // SiteController
 // home , about , team , contact
-Route::get('home', [SiteController::class, 'home'])->name('home');
-Route::get('about', [SiteController::class, 'about'])->name('about');
-Route::get('team', [SiteController::class, 'team'])->name('team');
-Route::get('contact', [SiteController::class, 'contact'])->name('contact');
+// Route::get('home', [SiteController::class, 'home'])->name('home');
+// Route::get('about', [SiteController::class, 'about'])->name('about');
+// Route::get('team', [SiteController::class, 'team'])->name('team');
+// Route::get('contact', [SiteController::class, 'contact'])->name('contact');
+
+Route::get('course/{name}', [CourseController::class, 'index'])->name('course.index');
