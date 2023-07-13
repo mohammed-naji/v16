@@ -3,6 +3,7 @@
 use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\SiteController;
 
 // Route::get('/profile/{name?}', function($n = '') {
@@ -149,4 +150,13 @@ use App\Http\Controllers\SiteController;
 // Route::get('team', [SiteController::class, 'team'])->name('team');
 // Route::get('contact', [SiteController::class, 'contact'])->name('contact');
 
-Route::get('course/{name}', [CourseController::class, 'index'])->name('course.index');
+// Route::get('course/{name}', [CourseController::class, 'index'])->name('course.index');
+
+// Route::get('/admin', function() {
+//     return 'Admin';
+// });
+
+Route::get('/', [PersonalController::class, 'index'])->name('index');
+Route::get('/contact', [PersonalController::class, 'contact'])->name('contact');
+Route::get('/projects', [PersonalController::class, 'projects'])->name('projects');
+Route::get('/resume', [PersonalController::class, 'resume'])->name('resume');
