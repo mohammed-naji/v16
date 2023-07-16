@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\FormController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\PersonalController;
@@ -160,3 +161,10 @@ Route::get('/', [PersonalController::class, 'index'])->name('index');
 Route::get('/contact', [PersonalController::class, 'contact'])->name('contact');
 Route::get('/projects', [PersonalController::class, 'projects'])->name('projects');
 Route::get('/resume', [PersonalController::class, 'resume'])->name('resume');
+
+
+Route::get('form1', [FormController::class, 'form1'])->name('forms.form1');
+Route::post('form1', [FormController::class, 'form1_data'])->name('forms.form1_data');
+
+Route::get('form2', [FormController::class, 'form2'])->name('forms.form2');
+Route::post('form2', [FormController::class, 'form2_data'])->name('forms.form2_data');
