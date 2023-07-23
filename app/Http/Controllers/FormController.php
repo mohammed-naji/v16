@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\DataRequest;
+use App\Mail\ContactMail;
+use App\Mail\ContactUsMail;
 use App\Rules\WordCount;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use LDAP\Result;
 
@@ -88,4 +91,36 @@ class FormController extends Controller
         $imgname = rand(). time(). $request->file('image')->getClientOriginalName();
         $request->file('image')->move(public_path('uploads'),$imgname);
     }
+
+    function contact() {
+        return view('forms.contact');
+    }
+
+    function contact_data (Request $request) {
+        // validate data
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'cv' => 'required',
+        ]);
+
+        // upload file
+        // Mohammed Ahmed => mohammed-ahmed-23-7-2023-4656565.pdf
+        // dd.pdf => pdf
+        $ex = $request->file('cv')->getClientOriginalExtension();
+        $cv_name = str_replace(' ', '-', strtolower($request->name));
+        $cv_name = $cv_name . '-cv-'.date('d-m-Y').'-'.time().'.'.$ex;
+        $request->file('cv')->move(public_path('uploaded_cv'), $cv_name);
+
+        $info = $request->except('_token', 'cv');
+        $info['cv'] = $cv_name;
+
+        // dd($info);
+        // store data or send mail or any action
+        Mail::to('malqumbuz@gmail.com')->send(new ContactMail($info));
+        // redirect to any other page
+    }
 }
+// smtp => simple mail transfer protocol
+// mailtrap

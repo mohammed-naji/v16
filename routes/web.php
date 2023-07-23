@@ -171,3 +171,6 @@ Route::post('form2', [FormController::class, 'form2_data'])->name('forms.form2_d
 
 Route::get('form3', [FormController::class, 'form3'])->name('forms.form3');
 Route::post('form3', [FormController::class, 'form3_data'])->name('forms.form3_data');
+
+Route::get('contact', [FormController::class, 'contact'])->name('forms.contact');
+Route::post('contact', [FormController::class, 'contact_data'])->name('forms.contact_data');
