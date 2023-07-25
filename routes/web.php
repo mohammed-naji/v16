@@ -5,7 +5,9 @@ use App\Http\Controllers\FormController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\PersonalController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SiteController;
+use App\Models\Product;
 
 // Route::get('/profile/{name?}', function($n = '') {
 //     return 'Profile ' . $n;
@@ -174,3 +176,11 @@ Route::post('form3', [FormController::class, 'form3_data'])->name('forms.form3_d
 
 Route::get('contact', [FormController::class, 'contact'])->name('forms.contact');
 Route::post('contact', [FormController::class, 'contact_data'])->name('forms.contact_data');
+
+// $con = mysqli_connect('localhost', 'root', '', 'v16');
+
+// if(!$con) {
+//     die('dddd');
+// }
+
+Route::get('products', [ProductController::class, 'products'])->name('products.index');
