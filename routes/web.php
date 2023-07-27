@@ -183,4 +183,7 @@ Route::post('contact', [FormController::class, 'contact_data'])->name('forms.con
 //     die('dddd');
 // }
 
+
+// CRUD Application
 Route::get('products', [ProductController::class, 'products'])->name('products.index');
+Route::get('products/{product}', [ProductController::class, 'show'])->name('products.show');
