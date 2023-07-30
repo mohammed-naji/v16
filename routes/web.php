@@ -186,4 +186,11 @@ Route::post('contact', [FormController::class, 'contact_data'])->name('forms.con
 
 // CRUD Application
 Route::get('products', [ProductController::class, 'products'])->name('products.index');
+
+Route::get('products/create', [ProductController::class, 'create'])->name('products.create');
+Route::post('products/store', [ProductController::class, 'store'])->name('products.store');
+
 Route::get('products/{product}', [ProductController::class, 'show'])->name('products.show');
+// /products/create
+
+Route::delete('products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
