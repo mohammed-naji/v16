@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
@@ -77,11 +78,46 @@ class ProductController extends Controller
     }
 
     function destroy($id) {
-        Product::destroy($id);
+        // Product::destroy($id);
+        $product = Product::findOrFail($id);
+        File::delete(public_path($product->image));
+        $product->delete();
+        return $id;
 
-        return redirect()
-        ->route('products.index')
-        ->with('msg', 'Product deleted successfully')
-        ->with('icon', 'error');
+        // return redirect()
+        // ->route('products.index')
+        // ->with('msg', 'Product deleted successfully')
+        // ->with('icon', 'error');
+    }
+
+    function update(Request $request, $id) {
+        // dd($request->all());
+        $request->validate([
+            'name' => 'required|min:3',
+            'image' => 'nullable|image|mimes:png,jpg,jpeg',
+            'price' => 'required|numeric|gt:0',
+            'content' => 'required'
+        ]);
+
+        $product = Product::findOrFail($id);
+
+        $data = $request->except('_token','image');
+
+        if($request->hasFile('image')) {
+            File::delete(public_path($product->image));
+            $path = $request->file('image')->store('images', 'zina');
+            $data['image'] = $path;
+        }
+
+        // dd($data);
+
+        $product->update($data);
+
+        return $product;
+
+        // return redirect()
+        // ->route('products.index')
+        // ->with('msg', 'Product updated successfully')
+        // ->with('icon', 'warning');
     }
 }
